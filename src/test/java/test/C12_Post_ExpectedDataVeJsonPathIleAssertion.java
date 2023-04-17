@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class C12_Post_ExpectedDataVeJsonPathIleAssertion {
 
@@ -76,8 +77,13 @@ public class C12_Post_ExpectedDataVeJsonPathIleAssertion {
 
         JsonPath jsonPath = response.jsonPath();
 
-        Assert.assertEquals(expBody.getJSONObject("booking").get("firstname"),jsonPath.get("booking.firstname"));
-        Assert.assertEquals(expBody.getJSONObject("booking").get("lastname"),jsonPath.get("booking.lastname"));
+        assertEquals(expBody.getJSONObject("booking").get("firstname"),jsonPath.get("booking.firstname"));
+        assertEquals(expBody.getJSONObject("booking").get("lastname"),jsonPath.get("booking.lastname"));
+        assertEquals(expBody.getJSONObject("booking").get("totalprice"),jsonPath.get("booking.totalprice"));
+        assertEquals(expBody.getJSONObject("booking").get("depositpaid"),jsonPath.get("booking.depositpaid"));
+        assertEquals(expBody.getJSONObject("booking").get("additionalneeds"),jsonPath.get("booking.additionalneeds"));
+        assertEquals(expBody.getJSONObject("booking"). getJSONObject("bookingdates").get("checkin"),jsonPath.get("booking.bookingdates.checkin"));
+        assertEquals(expBody.getJSONObject("booking"). getJSONObject("bookingdates").get("checkout"),jsonPath.get("booking.bookingdates.checkout"));
 
     }
 }
