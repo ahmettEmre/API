@@ -1,7 +1,12 @@
 package test;
 
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.testng.asserts.SoftAssert;
+
+import static io.restassured.RestAssured.given;
 
 public class C13_Get_SoftAssertIleExpectedDataTesti {
 
@@ -35,6 +40,30 @@ public class C13_Get_SoftAssertIleExpectedDataTesti {
         data.put("profile_image","");
 
         JSONObject expBody= new JSONObject();
+        expBody.put("status","success");
+        expBody.put("message","Successfully! Record has been fetched.");
+        expBody.put("data",data);
+        System.out.println("expBody : "+ expBody);
+
+        Response response=given().when().get(url);
+
+        response.prettyPrint();
+
+        JsonPath jsonPath=response.jsonPath();
+
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(jsonPath.get("status"),expBody.get("status"));
+        softAssert.assertEquals(jsonPath.get("message"),expBody.get("message"));
+        softAssert.assertEquals(jsonPath.get("data.id"),expBody.getJSONObject("data").get("id"));
+
+        softAssert.assertAll();
+
+
+
+
+
+
 
 }
 }
