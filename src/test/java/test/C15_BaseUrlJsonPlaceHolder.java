@@ -38,7 +38,7 @@ public class C15_BaseUrlJsonPlaceHolder extends JsonPlaceHolderBaseUrl {
 
         specJsonPlace.pathParam("pp1","posts");
 
-        Response response= given().spec(specJsonPlace).get("/{pp1}");
+        Response response= given().spec(specJsonPlace).when().get("/{pp1}");
         response.prettyPrint();
 
         response.then().assertThat().statusCode(200)
@@ -56,6 +56,16 @@ public class C15_BaseUrlJsonPlaceHolder extends JsonPlaceHolderBaseUrl {
             ve “title” degerinin “optio dolor molestias sit” oldugunu test edin
          */
 
+        specJsonPlace.pathParams("pp1","posts","pp2",44);
+
+        Response response= given().spec(specJsonPlace).when().get("/{pp1}/{pp2}");
+        response.prettyPrint();
+
+        response.then().assertThat().statusCode(200)
+                .body("title",Matchers.equalTo("optio dolor molestias sit"));
+
+
+
     }
 
     @Test
@@ -66,6 +76,15 @@ public class C15_BaseUrlJsonPlaceHolder extends JsonPlaceHolderBaseUrl {
             request gonderdigimizde donen response’un status code’unun 200 oldugunu ve
             response body’sinin null oldugunu test edin
          */
+
+        specJsonPlace.pathParams("pp1","posts","pp2",50);
+
+        Response response= given().spec(specJsonPlace).when().delete("/{pp1}/{pp2}");
+        response.prettyPrint();
+
+        response.then().assertThat().statusCode(200)
+                .body("userId",Matchers.nullValue());
+
 
     }
 
