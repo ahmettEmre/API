@@ -4,6 +4,8 @@ import org.json.JSONObject;
 
 public class TestDataHerokuApp {
 
+    public int basariliStatusKod= 200;
+
     public JSONObject bookingDatesJson(){
         JSONObject bookingdates = new JSONObject();
         bookingdates.put("checkin","2021-06-01");
