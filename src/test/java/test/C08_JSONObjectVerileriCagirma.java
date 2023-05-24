@@ -34,11 +34,11 @@ public class C08_JSONObjectVerileriCagirma {
 
         JSONObject cepTel=new JSONObject();
         cepTel.put("type","iphone");
-        cepTel.put("type","0123-4567-8888");
+        cepTel.put("number","0123-4567-8888");
 
         JSONObject evTel=new JSONObject();
         evTel.put("type","home");
-        evTel.put("type","0123-4567-8910");
+        evTel.put("number","0123-4567-8910");
 
         JSONArray phoneNumbers = new JSONArray();
         phoneNumbers.put(1,evTel);
